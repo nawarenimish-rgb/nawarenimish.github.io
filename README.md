@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -319,15 +318,45 @@
     color: white;
   }
 
-  /* ---------- CREATE PROFILE ---------- */
-  .form-section{
-    background: white;
-    padding: 40px;
-    border-radius: var(--radius);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    max-width: 700px;
-    margin: 0 auto;
+  /* ---------- MODAL ---------- */
+  .modal{
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 50;
+    align-items: center;
+    justify-content: center;
   }
+  .modal.active{
+    display: flex;
+  }
+  .modal-content{
+    background: white;
+    border-radius: var(--radius);
+    padding: 32px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  .modal-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  .modal-header h2{
+    margin: 0;
+  }
+  .close-btn{
+    background: none;
+    font-size: 1.5rem;
+    color: var(--dark);
+    cursor: pointer;
+  }
+
   .form-group{
     margin-bottom: 24px;
   }
@@ -378,72 +407,6 @@
     line-height: 1;
   }
 
-  /* ---------- FOOTER ---------- */
-  footer{
-    background: var(--dark);
-    color: white;
-    padding: 40px 0;
-    text-align: center;
-  }
-  footer p{
-    margin: 8px 0;
-    opacity: 0.85;
-  }
-  .footer-links{
-    display: flex;
-    justify-content: center;
-    gap: 24px;
-    margin: 20px 0;
-    flex-wrap: wrap;
-  }
-  .footer-links a{
-    color: var(--secondary);
-    font-weight: 500;
-    transition: color 0.2s;
-  }
-  .footer-links a:hover{
-    color: var(--accent);
-  }
-
-  /* ---------- MODAL ---------- */
-  .modal{
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
-    z-index: 50;
-    align-items: center;
-    justify-content: center;
-  }
-  .modal.active{
-    display: flex;
-  }
-  .modal-content{
-    background: white;
-    border-radius: var(--radius);
-    padding: 32px;
-    max-width: 500px;
-    width: 90%;
-    max-height: 90vh;
-    overflow-y: auto;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-  }
-  .modal-header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 24px;
-  }
-  .modal-header h2{
-    margin: 0;
-  }
-  .close-btn{
-    background: none;
-    font-size: 1.5rem;
-    color: var(--dark);
-    cursor: pointer;
-  }
-
   /* ---------- TOAST ---------- */
   .toast{
     position: fixed;
@@ -464,7 +427,24 @@
     transform: translateY(0);
   }
 
-  /* ---------- RESPONSIVE ---------- */
+  .loading {
+    text-align: center;
+    padding: 40px;
+    color: var(--gray);
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background: var(--dark);
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+  }
+  footer p{
+    margin: 8px 0;
+    opacity: 0.85;
+  }
+
   @media (max-width: 768px){
     section{ padding: 60px 0; }
     .features-grid, .profiles-grid{
@@ -476,9 +456,6 @@
     .btn{
       width: 100%;
       justify-content: center;
-    }
-    .form-section{
-      padding: 24px;
     }
   }
 </style>
@@ -531,9 +508,9 @@
         <p>See what makes each person unique and find common ground instantly.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">🎲</div>
-        <h3>Random Mixer</h3>
-        <p>Get matched with random people and start conversations with icebreakers.</p>
+        <div class="feature-icon">🌍</div>
+        <h3>Live Sync</h3>
+        <p>All profiles sync instantly across everyone in your batch!</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🏷️</div>
@@ -580,10 +557,7 @@
     </div>
 
     <div id="profilesContainer" class="profiles-grid">
-      <!-- Profiles will be rendered here -->
-      <div style="text-align: center; grid-column: 1/-1; padding: 40px; color: #95a5a6;">
-        <p style="font-size: 1.1rem;">No profiles yet. Be the first to create one! 👇</p>
-      </div>
+      <div class="loading">Loading profiles...</div>
     </div>
   </div>
 </section>
@@ -628,7 +602,7 @@
 
       <div class="form-group">
         <label for="interests">Interests & Hobbies</label>
-        <input type="text" id="interestInput" placeholder="Type an interest and press Enter (e.g., Gaming, Music, Sports)">
+        <input type="text" id="interestInput" placeholder="Type and press Enter (e.g., Gaming, Music, Sports)">
         <div class="chip-container" id="interestsContainer"></div>
       </div>
 
@@ -675,21 +649,31 @@
   <div class="wrap">
     <h3 style="margin-top: 0;">FresherConnect</h3>
     <p>Helping college freshers connect, make friends, and create lasting memories from day one.</p>
-    <div class="footer-links">
-      <a href="#features">About</a>
-      <a href="#discover">Profiles</a>
-      <a href="#create">Create Profile</a>
-      <a href="javascript:void(0)" id="shareFooterBtn">Share Link</a>
-    </div>
     <p>&copy; 2024 FresherConnect. Made with ❤️ for your batch.</p>
   </div>
 </footer>
 
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js"></script>
 <script>
+// Firebase Configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBk8pQ3xL9vN_5mK2aD4eF6gH7iJ8kL9mN0",
+  authDomain: "fresherconnect-99e3d.firebaseapp.com",
+  databaseURL: "https://fresherconnect-99e3d-default-rtdb.firebaseio.com",
+  projectId: "fresherconnect-99e3d",
+  storageBucket: "fresherconnect-99e3d.appspot.com",
+  messagingSenderId: "987654321098",
+  appId: "1:987654321098:web:zyxwvutsrqponmlkjihgf"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
 (function(){
   "use strict";
 
-  const STORAGE_KEY = "fresherconnect-profiles";
   const ICEBREAKERS = [
     "What's your go-to midnight snack?",
     "If you could learn any skill instantly, what would it be?",
@@ -723,26 +707,27 @@
   const filterBtns = document.querySelectorAll(".filter-btn");
   const toast = document.getElementById("toast");
 
-  // Load profiles from storage
-  function loadProfiles() {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      profiles = stored ? JSON.parse(stored) : [];
-    } catch (e) {
-      profiles = [];
-    }
-  }
-
-  // Save profiles to storage
-  function saveProfiles() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(profiles));
-  }
-
   // Show toast message
   function showToast(message, duration = 3000) {
     toast.textContent = message;
     toast.classList.add("show");
     setTimeout(() => toast.classList.remove("show"), duration);
+  }
+
+  // Load profiles from Firebase in real-time
+  function loadProfiles() {
+    db.ref('profiles').on('value', (snapshot) => {
+      const data = snapshot.val();
+      profiles = data ? Object.values(data) : [];
+      renderProfiles();
+    }, (error) => {
+      console.error("Error loading profiles:", error);
+      profilesContainer.innerHTML = `
+        <div style="text-align: center; grid-column: 1/-1; padding: 40px; color: #95a5a6;">
+          <p style="font-size: 1.1rem;">⚠️ Connection issue. Please refresh the page.</p>
+        </div>
+      `;
+    });
   }
 
   // Add interest
@@ -819,14 +804,19 @@
       createdAt: new Date().toLocaleDateString()
     };
 
-    profiles.push(profile);
-    saveProfiles();
-    modal.classList.remove("active");
-    form.reset();
-    interests = [];
-    renderInterests();
-    renderProfiles();
-    showToast("✅ Profile created successfully! Scroll down to see yourself.");
+    // Save to Firebase
+    db.ref('profiles/' + profile.id).set(profile, (error) => {
+      if (error) {
+        showToast("❌ Failed to save profile. Try again.");
+        console.error("Error:", error);
+      } else {
+        modal.classList.remove("active");
+        form.reset();
+        interests = [];
+        renderInterests();
+        showToast("✅ Profile created! Your batch can now see you.");
+      }
+    });
   });
 
   // Search functionality
@@ -852,7 +842,7 @@
       const matchSearch = currentSearch === "" || 
         profile.name.toLowerCase().includes(currentSearch) ||
         profile.hometown.toLowerCase().includes(currentSearch) ||
-        profile.interests.some(i => i.toLowerCase().includes(currentSearch));
+        (profile.interests && profile.interests.some(i => i.toLowerCase().includes(currentSearch)));
       return matchFilter && matchSearch;
     });
   }
@@ -861,10 +851,19 @@
   function renderProfiles() {
     const filtered = getFilteredProfiles();
     
+    if (profiles.length === 0) {
+      profilesContainer.innerHTML = `
+        <div style="text-align: center; grid-column: 1/-1; padding: 40px; color: #95a5a6;">
+          <p style="font-size: 1.1rem;">No profiles yet. Be the first to create one! 👇</p>
+        </div>
+      `;
+      return;
+    }
+
     if (filtered.length === 0) {
       profilesContainer.innerHTML = `
         <div style="text-align: center; grid-column: 1/-1; padding: 40px; color: #95a5a6;">
-          <p style="font-size: 1.1rem;">No profiles found. Try adjusting your search or filters.</p>
+          <p style="font-size: 1.1rem;">No matches found. Try adjusting your search or filter.</p>
         </div>
       `;
       return;
@@ -890,7 +889,7 @@
               </div>
             ` : ''}
           </div>
-          ${profile.interests.length > 0 ? `
+          ${profile.interests && profile.interests.length > 0 ? `
             <div class="interests">
               ${profile.interests.slice(0, 3).map(i => `<span class="interest-tag">${i}</span>`).join('')}
               ${profile.interests.length > 3 ? `<span class="interest-tag">+${profile.interests.length - 3}</span>` : ''}
@@ -928,7 +927,7 @@
         </div>
       ` : ''}
 
-      ${profile.interests.length > 0 ? `
+      ${profile.interests && profile.interests.length > 0 ? `
         <div style="margin: 20px 0;">
           <p style="font-weight: 600; margin-bottom: 12px;">Interests:</p>
           <div class="interests">
@@ -950,7 +949,7 @@
       ` : ''}
 
       <div style="margin-top: 24px; display: flex; gap: 12px;">
-        <button class="btn btn-primary" style="flex: 1;" onclick="navigator.clipboard.writeText('Check out ${profile.name} on FresherConnect - this is so cool!'); window.showToast('Copied to clipboard!')">📋 Copy Details</button>
+        <button class="btn btn-primary" style="flex: 1;" onclick="navigator.clipboard.writeText('Check out ${profile.name} on FresherConnect!'); window.showToast('Copied!')">📋 Copy</button>
         <button class="btn btn-secondary" style="flex: 1;" onclick="document.getElementById('detailModal').classList.remove('active')">Close</button>
       </div>
     `;
@@ -969,20 +968,18 @@
       }).catch(err => console.log("Error sharing:", err));
     } else {
       navigator.clipboard.writeText(url).then(() => {
-        showToast("Link copied to clipboard! Share it with your batch.");
+        showToast("🔗 Link copied! Share with your batch.");
       });
     }
   }
 
   document.getElementById("shareNavBtn").addEventListener("click", shareBoard);
-  document.getElementById("shareFooterBtn").addEventListener("click", shareBoard);
 
   // Expose showToast globally
   window.showToast = showToast;
 
   // Initialize
   loadProfiles();
-  renderProfiles();
 })();
 </script>
 </body>

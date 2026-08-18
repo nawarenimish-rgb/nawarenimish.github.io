@@ -575,58 +575,58 @@
         <input type="text" id="name" required placeholder="What's your name?">
       </div>
 
-      <div class="form-group">
-        <label for="branch">Branch / Course *</label>
-        <select id="branch" required>
-          <option value="">Select your branch</option>
-          <option value="cse">Computer Science (CSE)</option>
-          <option value="ece">Electronics & Communication (ECE)</option>
-          <option value="it">Information Technology (IT)</option>
-          <option value="mechanical">Mechanical Engineering</option>
-          <option value="civil">Civil Engineering</option>
-          <option value="chemical">Chemical Engineering</option>
-          <option value="aerospace">Aerospace Engineering</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
+        <div class="form-group">
+    <label for="branch">Branch / Course *</label>
+    <select id="branch" required>
+      <option value="">Select your branch</option>
+      <option value="cse">Computer Science (CSE)</option>
+      <option value="ece">Electronics & Communication (ECE)</option>
+      <option value="it">Information Technology (IT)</option>
+      <option value="mechanical">Mechanical Engineering</option>
+      <option value="civil">Civil Engineering</option>
+      <option value="chemical">Chemical Engineering</option>
+      <option value="aerospace">Aerospace Engineering</option>
+      <option value="other">Other</option>
+    </select>
+  </div>
 
-      <div class="form-group">
-        <label for="hometown">Hometown *</label>
-        <input type="text" id="hometown" required placeholder="Where are you from?">
-      </div>
+  <div class="form-group">
+    <label for="hometown">Hometown *</label>
+    <input type="text" id="hometown" required placeholder="Where are you from?">
+  </div>
 
-      <div class="form-group">
-        <label for="bio">Tell us about yourself</label>
-        <textarea id="bio" placeholder="Share something interesting about yourself in a few lines..."></textarea>
-      </div>
+  <div class="form-group">
+    <label for="bio">Tell us about yourself</label>
+    <textarea id="bio" placeholder="Share something interesting about yourself in a few lines..."></textarea>
+  </div>
 
-      <div class="form-group">
-        <label for="interests">Interests & Hobbies</label>
-        <input type="text" id="interestInput" placeholder="Type and press Enter (e.g., Gaming, Music, Sports)">
-        <div class="chip-container" id="interestsContainer"></div>
-      </div>
+  <div class="form-group">
+    <label for="interestInput">Interests & Hobbies</label>
+    <input type="text" id="interestInput" placeholder="Type and press Enter (e.g., Gaming, Music, Sports)">
+    <div class="chip-container" id="interestsContainer"></div>
+  </div>
 
-      <div class="form-group">
-        <label for="contact">Contact (Optional)</label>
-        <input type="text" id="contact" placeholder="Instagram handle, email, or phone (optional)">
-      </div>
+  <div class="form-group">
+    <label for="contact">Contact (Optional)</label>
+    <input type="text" id="contact" placeholder="Instagram handle, email, or phone (optional)">
+  </div>
 
-      <div class="form-group">
-        <label for="avatar">Emoji Avatar</label>
-        <select id="avatar">
-          <option value="😊">😊 Happy</option>
-          <option value="😎">😎 Cool</option>
-          <option value="🤓">🤓 Nerdy</option>
-          <option value="😄">😄 Cheerful</option>
-          <option value="🥳">🥳 Party</option>
-          <option value="🤘">🤘 Rock</option>
-          <option value="🧠">🧠 Brain</option>
-          <option value="⚡">⚡ Energy</option>
-        </select>
-      </div>
+  <div class="form-group">
+    <label for="avatar">Emoji Avatar</label>
+    <select id="avatar">
+      <option value="😊">😊 Happy</option>
+      <option value="😎">😎 Cool</option>
+      <option value="🤓">🤓 Nerdy</option>
+      <option value="😄">😄 Cheerful</option>
+      <option value="🥳">🥳 Party</option>
+      <option value="🤘">🤘 Rock</option>
+      <option value="🧠">🧠 Brain</option>
+      <option value="⚡">⚡ Energy</option>
+    </select>
+  </div>
 
-      <button type="submit" class="btn btn-primary" style="width: 100%;">Create Profile</button>
-    </form>
+  <button type="submit" class="btn btn-primary" style="width: 100%;">Create Profile</button>
+</form>
   </div>
 </div>
 

@@ -656,20 +656,22 @@
 <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js"></script>
 <script>
-// Firebase Configuration
+// Firebase Configuration - UPDATED WITH CORRECT MESSENGER ID
 const firebaseConfig = {
   apiKey: "AIzaSyBk8pQ3xL9vN_5mK2aD4eF6gH7iJ8kL9mN0",
-  authDomain: "fresherconnect-99e3d.firebaseapp.com",
-  databaseURL: "https://fresherconnect-99e3d-default-rtdb.firebaseio.com",
-  projectId: "fresherconnect-99e3d",
-  storageBucket: "fresherconnect-99e3d.appspot.com",
-  messagingSenderId: "987654321098",
-  appId: "1:987654321098:web:zyxwvutsrqponmlkjihgf"
+  authDomain: "fresherconnect-8d3f7.firebaseapp.com",
+  databaseURL: "https://fresherconnect-8d3f7-default-rtdb.firebaseio.com",
+  projectId: "fresherconnect-8d3f7",
+  storageBucket: "fresherconnect-8d3f7.appspot.com",
+  messagingSenderId: "645843889618",
+  appId: "1:645843889618:web:abc123def456ghi789"
 };
 
 // Initialize Firebase
+console.log("🚀 Initializing Firebase...");
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
+console.log("✅ Firebase initialized successfully");
 
 (function(){
   "use strict";
@@ -716,15 +718,18 @@ const db = firebase.database();
 
   // Load profiles from Firebase in real-time
   function loadProfiles() {
+    console.log("📥 Loading profiles from Firebase...");
     db.ref('profiles').on('value', (snapshot) => {
       const data = snapshot.val();
       profiles = data ? Object.values(data) : [];
+      console.log("✅ Profiles loaded:", profiles.length, "profiles found");
       renderProfiles();
     }, (error) => {
-      console.error("Error loading profiles:", error);
+      console.error("❌ Error loading profiles:", error);
       profilesContainer.innerHTML = `
         <div style="text-align: center; grid-column: 1/-1; padding: 40px; color: #95a5a6;">
           <p style="font-size: 1.1rem;">⚠️ Connection issue. Please refresh the page.</p>
+          <p style="font-size: 0.9rem; color: #e74c3c;">Error: ${error.message}</p>
         </div>
       `;
     });
@@ -804,12 +809,14 @@ const db = firebase.database();
       createdAt: new Date().toLocaleDateString()
     };
 
+    console.log("💾 Saving profile:", profile);
     // Save to Firebase
     db.ref('profiles/' + profile.id).set(profile, (error) => {
       if (error) {
+        console.error("❌ Error saving profile:", error);
         showToast("❌ Failed to save profile. Try again.");
-        console.error("Error:", error);
       } else {
+        console.log("✅ Profile saved successfully");
         modal.classList.remove("active");
         form.reset();
         interests = [];
@@ -979,6 +986,7 @@ const db = firebase.database();
   window.showToast = showToast;
 
   // Initialize
+  console.log("🎯 Application initializing...");
   loadProfiles();
 })();
 </script>

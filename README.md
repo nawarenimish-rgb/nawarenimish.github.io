@@ -656,15 +656,16 @@
 <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js"></script>
 <script>
-// Firebase Configuration - UPDATED WITH CORRECT MESSENGER ID
+// Firebase Configuration - COEP FRESHERS 2030 PROJECT
 const firebaseConfig = {
-  apiKey: "AIzaSyBk8pQ3xL9vN_5mK2aD4eF6gH7iJ8kL9mN0",
-  authDomain: "fresherconnect-8d3f7.firebaseapp.com",
-  databaseURL: "https://fresherconnect-8d3f7-default-rtdb.firebaseio.com",
-  projectId: "fresherconnect-8d3f7",
-  storageBucket: "fresherconnect-8d3f7.appspot.com",
+  apiKey: "AIzaSyDVNLKHsDRucDBRF2ThGJcLdOj7Y-0_70k",
+  authDomain: "coep-freshers-2030.firebaseapp.com",
+  databaseURL: "https://coep-freshers-2030-default-rtdb.firebaseio.com",
+  projectId: "coep-freshers-2030",
+  storageBucket: "coep-freshers-2030.firebasestorage.app",
   messagingSenderId: "645843889618",
-  appId: "1:645843889618:web:abc123def456ghi789"
+  appId: "1:645843889618:web:c3ee7b3b218fbd7f7aac0b",
+  measurementId: "G-69GCYF3C9L"
 };
 
 // Initialize Firebase
@@ -672,6 +673,7 @@ console.log("🚀 Initializing Firebase...");
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 console.log("✅ Firebase initialized successfully");
+console.log("📦 Project: coep-freshers-2030");
 
 (function(){
   "use strict";
@@ -726,6 +728,8 @@ console.log("✅ Firebase initialized successfully");
       renderProfiles();
     }, (error) => {
       console.error("❌ Error loading profiles:", error);
+      console.error("Error code:", error.code);
+      console.error("Error message:", error.message);
       profilesContainer.innerHTML = `
         <div style="text-align: center; grid-column: 1/-1; padding: 40px; color: #95a5a6;">
           <p style="font-size: 1.1rem;">⚠️ Connection issue. Please refresh the page.</p>

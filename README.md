@@ -1,5 +1,4 @@
-# nawarenimish.github.io
-Freshers intro
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
